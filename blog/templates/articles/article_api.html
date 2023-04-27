@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Article list
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{ 'Title' }}</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for article in article_list %}
+
+        <tr>
+            <th scope="row">{{ article.id }}</th>
+
+            <td>
+                {{ article.attributes.title }}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+
+
+{% endblock %}
