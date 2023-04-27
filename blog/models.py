@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 from sqlalchemy.orm import relationship
 from blog.app import db
 from flask_login import UserMixin
@@ -13,6 +14,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255))
     is_staff = db.Column(db.Boolean, default=False)
     author = relationship("Author", uselist=False, back_populates='user')     # 1:1
+
 
     def __repr__(self):
         return f"<User #{self.id} {self.username!r}>"
@@ -35,3 +37,4 @@ class Author(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))       # 1:1 relatiom
     user = relationship('User', back_populates='author')             # 1:1 relation
     articles = db.relationship("Article",back_populates="author")    # 1:n relation
+

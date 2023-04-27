@@ -29,6 +29,7 @@ Article list
                 <a href="{{ url_for('user.user_details', pk=article.author.user_id ) }}">
                     {{ article.author.user.username }}
                 </a>
+
             </td>
             <td>
                 {{ article.text[:30] }}

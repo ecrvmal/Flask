@@ -7,6 +7,7 @@ from werkzeug.exceptions import NotFound
 
 user = Blueprint('user', __name__,url_prefix='/users',static_folder='../static')
 
+
 # USERS = {
 #     1: {'first_name': 'Joe','last_name':'Biden','birth_year':1942},
 #     2: {'first_name': 'Donald', 'last_name':'Trump', 'birth_year':1946},
@@ -32,6 +33,7 @@ def user_list():
 @user.route('/<int:pk>')
 @login_required
 def user_details(pk: int):
+
     from blog.models import User
     _user = User.query.filter_by(id=pk).one_or_none()
     key_list = ['id', 'username', 'email', ]

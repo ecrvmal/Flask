@@ -27,6 +27,7 @@ def login():
     form = UserLoginForm(request.form)
     if request.method == 'POST' and form.validate_on_submit():
 
+
         username = form.username.data
         password = form.password.data
 
@@ -66,8 +67,8 @@ def register():
 
         _user = User(
             username=form.username.data,
-            email=form.email.data,
             # birth_year=form.birth_year.data,
+
             is_staff=False,
             password=generate_password_hash(form.password.data)
         )

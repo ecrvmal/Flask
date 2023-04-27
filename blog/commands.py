@@ -57,16 +57,19 @@ def create_articles():
             Article(title='Weather on SouthPole',
                     text='There is a stable weather on the South Pole. Average temperature is about - 60 degrees of '
                          'Celsius', author_id=3, )
+
         )
         db.session.add(
             Article(title='About the dangers of learning',
                     text='England scientists discovered that that more people study mathematics the less they sleep',
                     author_id=1, )
+
         )
         db.session.add(
             Article(title='About Cats',
                     text='People thinks that cats are the most beauty animals in the world',
                     author_id=4, )
+
         )
 
         db.session.commit()
