@@ -19,6 +19,7 @@ class BaseConfig(object):
     FLASK_ADMIN_SWATCH = "cerulean"
 
 
+
 class DevConfig(BaseConfig):
     DEBUG = True
     # SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
@@ -26,17 +27,15 @@ class DevConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite'
 
 
-
 class TestConfig(BaseConfig):
     TESTING = True
+
 
 
 class ProductionConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = "postgresql://user:password@database:5432/blog"
     DEBUG = False
     TESTING = False
-
-
 
 
 

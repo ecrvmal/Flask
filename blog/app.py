@@ -5,7 +5,9 @@ from flask import Flask
 from blog import commands
 from blog.extensions import db, login_manager, migrate, csrf
 from blog.models import User, Article
+
 from blog.admin import admin
+
 
 
 def create_app() -> Flask:
@@ -48,6 +50,7 @@ def register_blueprint(app: Flask):
     app.register_blueprint(author)
 
     admin.init_app(app)
+
 
 
 def register_commands(app: Flask):

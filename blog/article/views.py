@@ -10,6 +10,7 @@ from blog.forms.article import CreateArticleForm
 
 article = Blueprint('article', __name__, url_prefix='/articles',static_folder='../static')
 
+
 # key_list = ['id', 'title', 'text', 'a_user_id', ]
 
 # ARTICLES = {
@@ -97,6 +98,5 @@ def article_tag_details(pk: int):
         article_set=article_set,
         selected_tag=selected_tag,
     )
-
 
 
