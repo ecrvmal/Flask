@@ -20,25 +20,28 @@ Article list
         <tr>
             <th scope="row">{{ id }}</th>
             <td>
-                {{ article['title'] }}
+
+                {{ article.title }}
             </td>
             <td>
-                {{ users[article['author']]["first_name"] }}
+                {{ author.username }}
             </td>
             <td>
-                {{ article['text'][:30] }}
+                {{ article.text[:30] }}
+
             </td>
         </tr>
         </tbody>
     </table>
     <div class="border border-primary rounded"
          style="max-width: 600px; height: 200px; margin-top: 50px;">
-        <div>
-            <h3>
+        <div style="padding: 10px;">
+            <h3 style="marhin: 3px;">
                 The Text of Article :
             </h3>
             <p class="lead">
-                {{ article['text'] }}
+                {{ article.text }}
+
             </p>
         </div>
     </div>

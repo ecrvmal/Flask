@@ -17,20 +17,29 @@ Article list
         </tr>
         </thead>
         <tbody>
-        {% for a in articles %}
+
+        {% for article in articles %}
+
+
         <tr>
-            <th scope="row">{{ a }}</th>
+            <th scope="row">{{ article.id }}</th>
 
             <td>
-                <a href="{{ url_for('article.get_article', pk=a ) }}"> {{ articles[a]['title'] }} </a>
+                <a href="{{ url_for('article.get_article', pk=article.id ) }}"> {{ article.title }} </a>
             </td>
             <td>
-                <a href="{{ url_for('user.get_user', pk=articles[a]['author'] ) }}">
-                    {{ users[articles[a]['author']]["first_name"] }}
+                <a href="{{ url_for('user.get_user', pk=article.a_user_id ) }}">
+            {% for user in users %}
+                {% if article.a_user_id==user.id  %}
+                    {{ user.username }}
+                {% endif %}
+            {% endfor %}
                 </a>
+                {# article.a_user_id #}
             </td>
             <td>
-                {{ articles[a]['text'][:30] }}
+                {{ article.text[:30] }}
+
             </td>
         </tr>
         {% endfor %}
