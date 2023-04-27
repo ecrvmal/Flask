@@ -5,3 +5,4 @@ from flask_migrate import Migrate
 login_manager = LoginManager()
 db = SQLAlchemy()
 migrate = Migrate()
+
