@@ -46,7 +46,6 @@ def get_article(pk: int):
         key_list=key_list,
         id=pk,
         author=author,
-
     )
 
 

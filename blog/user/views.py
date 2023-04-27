@@ -37,7 +37,7 @@ def get_user(pk: int):
     _user = User.query.filter_by(id=pk).one_or_none()
     key_list = ['id', 'username', 'email', ]
     if not _user:
-        raise NotFound(f'user id {pk} not found')      # change error message
+        # raise NotFound(f'user id {pk} not found')      # change error message
         return redirect('/users/')                       # or make action  (redirect) on error
     return render_template(
         'users/details.html',
