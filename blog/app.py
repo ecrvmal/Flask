@@ -16,3 +16,4 @@ def register_blueprint(app: Flask):
     app.register_blueprint(user)
     app.register_blueprint(article)
 
+
