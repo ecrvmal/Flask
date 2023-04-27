@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 from sqlalchemy.orm import relationship
 from blog.app import db
 from flask_login import UserMixin
@@ -9,9 +12,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(255), unique=True)
     email = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
-    birth_year = db.Column(db.Integer)
-    u_articles = db.relationship("Article", back_populates="a_user")          # creates list user.article
     is_staff = db.Column(db.Boolean, default=False)
+    author = relationship("Author", uselist=False, back_populates='user')     # 1:1
+
 
     def __repr__(self):
         return f"<User #{self.id} {self.username!r}>"
@@ -22,6 +25,16 @@ class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
     text = db.Column(db.String)
-    a_user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    a_user = db.relationship('User', back_populates="u_articles")           # creates list article.user
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow )
+    author_id = db.Column(db.Integer, db.ForeignKey("authors.id"), nullable=False)     # 1:n relation
+    author = db.relationship('Author', back_populates="articles")           # creates list article.user
+
+
+class Author(db.Model):
+    __tablename__ = 'authors'  # optional
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))       # 1:1 relatiom
+    user = relationship('User', back_populates='author')             # 1:1 relation
+    articles = db.relationship("Article",back_populates="author")    # 1:n relation
 

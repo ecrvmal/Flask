@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Users list
+Authors list
 {% endblock %}
 
 {% block body %}
@@ -10,24 +10,23 @@ Users list
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">Author ID</th>
             <th scope="col">Username</th>
             <th scope="col">Email</th>
         </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+        {% for author in authors %}
         <tr>
-            <th scope="row">{{ user.id }}</th>
+            <th scope="row">{{ author.id }}</th>
             <td>
-                <a href="{{ url_for('user.user_details', pk=user.id ) }}">
+                 <a href="{{ url_for('user.user_details', pk=author.user_id ) }}"> {{ author.user.username }} </a>
+            </td>
+            <td>
+                {{ author.user.email }}
+            </td>
 
-                    {{ user.username }}
-                </a>
-            </td>
-            <td>
-                {{ user.email }}
-            </td>
+
         </tr>
         {% endfor %}
         </tbody>

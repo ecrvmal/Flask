@@ -46,27 +46,30 @@ def create_articles():
     with app.app_context():
         db.session.add(
             Article(title='Ecology in Country',
-                    text='Ecology is the biggest problem in Africa countries', a_user_id=5 )
+                    text='Ecology is the biggest problem in Africa countries', author_id=5 )
         )
         db.session.add(
             Article(title='Alcoholism in Europe',
                     text='British Scientists decided that the more we drink, the less remains',
-                    a_user_id=2, )
+                    author_id=2, )
         )
         db.session.add(
             Article(title='Weather on SouthPole',
                     text='There is a stable weather on the South Pole. Average temperature is about - 60 degrees of '
-                         'Celsius', a_user_id=3, )
+                         'Celsius', author_id=3, )
+
         )
         db.session.add(
             Article(title='About the dangers of learning',
                     text='England scientists discovered that that more people study mathematics the less they sleep',
-                    a_user_id=1, )
+                    author_id=1, )
+
         )
         db.session.add(
             Article(title='About Cats',
                     text='People thinks that cats are the most beauty animals in the world',
-                    a_user_id=4, )
+                    author_id=4, )
+
         )
 
         db.session.commit()

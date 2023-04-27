@@ -12,7 +12,8 @@ class UserRegisterForm(FlaskForm):
     username = StringField('Username')
     email = StringField('E-mail', [validators.DataRequired(),
                                    validators.Email()])
-    birth_year = IntegerField('Birth Year')
+    # birth_year = IntegerField('Birth Year')
+
     is_staff = BooleanField('Is Staff')
     password = PasswordField('Password', [
         validators.DataRequired()])
