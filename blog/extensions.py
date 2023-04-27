@@ -8,4 +8,3 @@ db = SQLAlchemy()
 migrate = Migrate()
 csrf = CSRFProtect()
 
-

@@ -57,19 +57,36 @@ def create_articles():
             Article(title='Weather on SouthPole',
                     text='There is a stable weather on the South Pole. Average temperature is about - 60 degrees of '
                          'Celsius', author_id=3, )
-
         )
         db.session.add(
             Article(title='About the dangers of learning',
                     text='England scientists discovered that that more people study mathematics the less they sleep',
                     author_id=1, )
-
         )
         db.session.add(
             Article(title='About Cats',
                     text='People thinks that cats are the most beauty animals in the world',
                     author_id=4, )
-
         )
 
         db.session.commit()
+
+
+@click.command('create-init-tags')
+def create_init_tags():
+    from blog.models import Tag
+    from wsgi import app
+
+    with app.app_context():
+        tags = ('flask','django','python', 'gb', 'sqlite' )
+        for item in tags:
+            db.session.add(Tag(name=item))
+        db.session.commit()
+    click.echo(f'Created tags : {", ".join(tags)}')
+
+
+
+
+
+
+

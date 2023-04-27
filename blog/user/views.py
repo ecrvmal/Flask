@@ -33,7 +33,6 @@ def user_list():
 @user.route('/<int:pk>')
 @login_required
 def user_details(pk: int):
-
     from blog.models import User
     _user = User.query.filter_by(id=pk).one_or_none()
     key_list = ['id', 'username', 'email', ]

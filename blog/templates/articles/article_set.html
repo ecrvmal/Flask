@@ -6,7 +6,7 @@ Article list
 
 {% block body %}
 <div class="container">
-
+<h2> articles for tag #{{selected_tag.id }} named '{{ selected_tag.name }}'</h2>
     <table class="table">
         <thead>
         <tr>
@@ -15,11 +15,10 @@ Article list
             <th scope="col">{{ 'Author' }}</th>
             <th scope="col">{{ 'Text' }}</th>
             <th scope="col">{{ 'Tags' }}</th>
-
         </tr>
         </thead>
         <tbody>
-        {% for article in articles %}
+        {% for article in article_set %}
 
         <tr>
             <th scope="row">{{ article.id }}</th>
@@ -37,10 +36,9 @@ Article list
             </td>
             <td>
                 {% for tag in article.tags %}
-                <a class="badge bg-primary" href="{{ url_for('article.article_tag_details', pk=tag.id ) }}"> {{ tag.name }} ({{tag.id}}), </a>
+                {{ tag.name }} ({{tag.id}}),
                 {% endfor %}
             </td>
-
         </tr>
         {% endfor %}
         </tbody>

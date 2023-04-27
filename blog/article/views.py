@@ -1,12 +1,12 @@
 from flask import Blueprint, render_template, redirect, request, url_for
 from flask_login import login_required, current_user
+from sqlalchemy.orm import joinedload
 from werkzeug.exceptions import NotFound
 
-from blog.models import User, Article, Author
+from blog.models import User, Article, Author, Tag
+
 from blog.extensions import db
 from blog.forms.article import CreateArticleForm
-
-
 
 
 article = Blueprint('article', __name__, url_prefix='/articles',static_folder='../static')
@@ -32,7 +32,7 @@ def article_list():
     return render_template(
         'articles/list.html',
         articles=articles,
-        users=users
+        users=users,
     )
 
 
@@ -55,10 +55,14 @@ def article_details(pk: int):
 def create_article():
     if request.method == 'GET':
         form = CreateArticleForm(request.form)
+        form.tags.choices = [(tag.id, tag.name) for tag in Tag.query.order_by('name')]
+
         return render_template('articles/create.html', form=form)
 
     if request.method == 'POST':
         form = CreateArticleForm(request.form)
+        form.tags.choices = [(tag.id, tag.name) for tag in Tag.query.order_by('name')]
+
         if form.validate_on_submit():
             if current_user.author:
                 _author = current_user.author.id
@@ -69,6 +73,12 @@ def create_article():
                 _author = author.id
             _article = Article(title=form.title.data.strip(), text=form.text.data, author_id=_author)
 
+            if form.tags.data:
+                selected_tags = Tag.query.filter(Tag.id.in_(form.tags.data))
+                for tag in selected_tags:
+                    _article.tags.append(tag)
+
+
             db.session.add(_article)
             db.session.commit()
 
@@ -78,5 +88,22 @@ def create_article():
             'articles/create.html',
             form=form,
     )
+
+
+@article.route('/tag/<int:pk>')
+@login_required
+def article_tag_details(pk: int):
+    selected_tag = Tag.query.filter_by(id=pk).one_or_none()
+
+    article_set = Article.query.options(joinedload(Article.tags)).filter(Article.tags.any(Tag.id == pk))
+    if not article_set:
+        raise NotFound(f"Article with tag #{pk} doesn't exist!")
+    return render_template(
+        'articles/article_set.html',
+        article_set=article_set,
+        selected_tag=selected_tag,
+    )
+
+
 
 
