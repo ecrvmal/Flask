@@ -5,7 +5,7 @@
 instance/*
 !instance/.gitignore
 .webassets-cache
-.env
+
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
@@ -72,7 +72,7 @@ db.sqlite3
 db.sqlite3-journal
 
 # Flask stuff:
-instance/
+# instance/
 
 # Scrapy stuff:
 .scrapy
@@ -124,6 +124,9 @@ __pypackages__/
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
+
+pgdata_dev
+pgdata_dev/
 
 # SageMath parsed files
 *.sage.py
@@ -365,6 +368,7 @@ fabric.properties
 ### Python Patch ###
 # Poetry local configuration file - https://python-poetry.org/docs/configuration/#local-configuration
 poetry.toml
+
 
 # ruff
 .ruff_cache/

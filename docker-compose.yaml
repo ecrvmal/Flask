@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  app:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    environment:
+      DATABASE_URI: postgresql://user:password@database:5432/blog
+      CONFIG_NAME: DevConfig
+    volumes:
+      - ./blog:/app/blog
+    ports:
+      - 8080:5000
+#    command: bash -c "
+#      ./wait-for-postgres.sh database
+#      && flask init-db
+#      "
+    depends_on:
+      - database
+
+  database:
+    image: postgres:12.7-alpine
+    privileged: true
+    environment:
+      POSTGRES_DB: blog
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+#      - pgdata:/var/lib/postgresql/data
+      - ${HOME}/Desktop/project/pgdata_dev:/var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+
+#volumes:
+#  pgdata:

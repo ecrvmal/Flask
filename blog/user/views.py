@@ -1,7 +1,5 @@
 from flask import Blueprint, render_template, redirect
-
 from flask_login import login_required
-
 from werkzeug.exceptions import NotFound
 
 
@@ -29,7 +27,6 @@ def user_list():
         'users/list.html',
         users=users,
         key_list=key_list,
-
     )
 
 
@@ -46,7 +43,6 @@ def get_user(pk: int):
         'users/details.html',
         id=pk,
         user=_user,
-
         key_list=key_list
     )
 
