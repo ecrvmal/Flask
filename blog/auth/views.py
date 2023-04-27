@@ -87,6 +87,7 @@ def register():
     )
 
 
+
 @auth.route('/logout')
 @login_required
 def logout():

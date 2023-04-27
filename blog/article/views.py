@@ -39,6 +39,7 @@ def get_article(pk: int):
     if not the_article:
         raise NotFound(f"Article #{pk} doesn't exist!")
     author = User.query.filter_by(id=the_article.id).one_or_none()
+
     return render_template(
         'articles/details.html',
         article=the_article,

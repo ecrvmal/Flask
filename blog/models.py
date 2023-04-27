@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"<User #{self.id} {self.username!r}>"
 
+
 class Article(db.Model):
     __tablename__ = 'articles'  # optional
     id = db.Column(db.Integer, primary_key=True)
