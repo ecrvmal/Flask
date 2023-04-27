@@ -1,0 +1,4 @@
+.local_details_text_box {
+margin: 20px;
+border: 1px solid grey;
+}

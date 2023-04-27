@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Article list
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">{{ 'Title' }}</th>
+            <th scope="col">{{ 'Author' }}</th>
+            <th scope="col">{{ 'Text' }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for a in articles %}
+        <tr>
+            <th scope="row">{{ a }}</th>
+
+            <td>
+                <a href="{{ url_for('article.get_article', pk=a ) }}"> {{ articles[a]['title'] }} </a>
+            </td>
+            <td>
+                <a href="{{ url_for('user.get_user', pk=articles[a]['author'] ) }}">
+                    {{ users[articles[a]['author']]["first_name"] }}
+                </a>
+            </td>
+            <td>
+                {{ articles[a]['text'][:30] }}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+
+
+{% endblock %}

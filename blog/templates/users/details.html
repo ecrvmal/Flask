@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Users list
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    {% for k in key_list %}
+                    <th scope="col">{{ k }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">{{ id }}</th>
+                    {% for k in key_list %}
+                    <td>
+                        {{ user[k] }}
+                    </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
