@@ -7,7 +7,6 @@ from werkzeug.exceptions import NotFound
 
 user = Blueprint('user', __name__,url_prefix='/users',static_folder='../static')
 
-
 # USERS = {
 #     1: {'first_name': 'Joe','last_name':'Biden','birth_year':1942},
 #     2: {'first_name': 'Donald', 'last_name':'Trump', 'birth_year':1946},

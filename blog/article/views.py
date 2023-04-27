@@ -4,7 +4,6 @@ from sqlalchemy.orm import joinedload
 from werkzeug.exceptions import NotFound
 
 from blog.models import User, Article, Author, Tag
-
 from blog.extensions import db
 from blog.forms.article import CreateArticleForm
 
@@ -36,7 +35,6 @@ def article_list():
     )
 
 
-
 @article.route('/<int:pk>')
 @login_required
 def article_details(pk: int):
@@ -56,13 +54,11 @@ def create_article():
     if request.method == 'GET':
         form = CreateArticleForm(request.form)
         form.tags.choices = [(tag.id, tag.name) for tag in Tag.query.order_by('name')]
-
         return render_template('articles/create.html', form=form)
 
     if request.method == 'POST':
         form = CreateArticleForm(request.form)
         form.tags.choices = [(tag.id, tag.name) for tag in Tag.query.order_by('name')]
-
         if form.validate_on_submit():
             if current_user.author:
                 _author = current_user.author.id
@@ -77,7 +73,6 @@ def create_article():
                 selected_tags = Tag.query.filter(Tag.id.in_(form.tags.data))
                 for tag in selected_tags:
                     _article.tags.append(tag)
-
 
             db.session.add(_article)
             db.session.commit()
@@ -103,7 +98,5 @@ def article_tag_details(pk: int):
         article_set=article_set,
         selected_tag=selected_tag,
     )
-
-
 
 
