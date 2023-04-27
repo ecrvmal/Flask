@@ -22,6 +22,7 @@ class BaseConfig(object):
     OPENAPI_SWAGGER_UI_VERSION = '3.22.0'
 
 
+
 class DevConfig(BaseConfig):
     DEBUG = True
     # SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
@@ -37,9 +38,6 @@ class ProductionConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = "postgresql://user:password@database:5432/blog"
     DEBUG = False
     TESTING = False
-
-
-
 
 
 

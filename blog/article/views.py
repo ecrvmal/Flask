@@ -99,4 +99,3 @@ def article_tag_details(pk: int):
     )
 
 
-

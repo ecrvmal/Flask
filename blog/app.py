@@ -9,6 +9,7 @@ from blog.admin import admin
 from blog.api import init_api
 
 
+
 def create_app() -> Flask:
     app = Flask(__name__)
     cfg_name = os.environ.get("CONFIG_NAME") or "ProductionConfig"
