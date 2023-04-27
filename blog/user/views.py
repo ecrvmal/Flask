@@ -1,11 +1,14 @@
 from flask import Blueprint, render_template, redirect
+
 from flask_login import login_required
+
 from werkzeug.exceptions import NotFound
 
 
 
 
 user = Blueprint('user', __name__,url_prefix='/users',static_folder='../static')
+
 
 # USERS = {
 #     1: {'first_name': 'Joe','last_name':'Biden','birth_year':1942},
@@ -26,6 +29,7 @@ def user_list():
         'users/list.html',
         users=users,
         key_list=key_list,
+
     )
 
 
@@ -42,6 +46,7 @@ def get_user(pk: int):
         'users/details.html',
         id=pk,
         user=_user,
+
         key_list=key_list
     )
 

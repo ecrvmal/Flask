@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask import Flask
 
+
 from blog import commands
 from blog.extensions import db, login_manager
 from blog.models import User, Article
@@ -8,6 +9,7 @@ from blog.models import User, Article
 # from blog.user.views import user
 # from blog.article.views import article
 # from blog.auth.views import auth
+
 
 
 def create_app() -> Flask:
@@ -47,6 +49,7 @@ def register_commands(app: Flask):
     app.cli.add_command(commands.init_db)
     app.cli.add_command(commands.create_users)
     app.cli.add_command(commands.create_articles)
+
 
 
 
