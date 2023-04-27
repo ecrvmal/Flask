@@ -16,3 +16,4 @@ psycopg2==2.9.6
 Flask-Migrate==4.0.4
 WTForms==3.0.1
 alembic==1.10.2
+

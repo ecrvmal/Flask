@@ -68,6 +68,7 @@ def register():
             username=form.username.data,
             email=form.email.data,
             # birth_year=form.birth_year.data,
+
             is_staff=False,
             password=generate_password_hash(form.password.data)
         )

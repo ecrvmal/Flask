@@ -11,6 +11,7 @@ def create_app() -> Flask:
     app = Flask(__name__)
     cfg_name = os.environ.get("CONFIG_NAME") or "ProductionConfig"
     app.config.from_object(f"blog.configs.{cfg_name}")
+
     # all these below moved to blog/config.py
     # app.config['SECRET_KEY'] = 'z#if^%-_2j9o9*tjxn(^c3k(#q_gonx^nyf6m7_=$x@y&kqw2r'
     # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -25,6 +26,7 @@ def register_extensions(app):
     db.init_app(app)
     migrate.init_app(app, db, compare_type=True, render_as_batch=True)
     csrf.init_app(app)
+
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
@@ -41,10 +43,12 @@ def register_blueprint(app: Flask):
     from blog.article.views import article
     from blog.author.views import author
 
+
     app.register_blueprint(user)
     app.register_blueprint(article)
     app.register_blueprint(auth)
     app.register_blueprint(author)
+
 
 
 def register_commands(app: Flask):
@@ -52,6 +56,7 @@ def register_commands(app: Flask):
     app.cli.add_command(commands.create_users)
     app.cli.add_command(commands.create_articles)
     app.cli.add_command(commands.create_init_tags)
+
 
 
 

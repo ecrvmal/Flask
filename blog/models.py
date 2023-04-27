@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import Table, ForeignKey
+
 from sqlalchemy.orm import relationship
 from blog.app import db
 from flask_login import UserMixin
@@ -38,6 +39,7 @@ class Article(db.Model):
     tags = db.relationship('Tag', secondary=article_tag_associations_table, back_populates='articles')
 
 
+
 class Author(db.Model):
     __tablename__ = 'authors'  # optional
     id = db.Column(db.Integer, primary_key=True)
@@ -51,4 +53,5 @@ class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     articles = db.relationship('Article', secondary=article_tag_associations_table, back_populates='tags')
+
 

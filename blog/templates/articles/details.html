@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Article fetails
+Article details
 {% endblock %}
 
 {% block body %}
@@ -39,6 +39,7 @@ Article fetails
          style="max-width: 600px; height: 200px; margin-top: 50px;">
         <div style="padding: 10px;">
             <h3 style="margin: 3px;">
+
                 The Text of Article :
             </h3>
             <p class="lead">
@@ -51,6 +52,7 @@ Article fetails
           <a class="badge bg-primary" href="{{ url_for('article.article_tag_details', pk=tag.id ) }}"> {{ tag.name }}  </a>
         {% endfor %}
     </div>
+
 
 </div>
 
