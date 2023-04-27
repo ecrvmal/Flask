@@ -1,14 +1,13 @@
-
 import codecs
 import urllib.request
 import json
 
 import requests
 from flask import Blueprint, render_template, redirect, request, url_for, json
+
 from flask_login import login_required, current_user
 from sqlalchemy.orm import joinedload
 from werkzeug.exceptions import NotFound
-
 
 from blog.models import User, Article, Author, Tag
 from blog.extensions import db
@@ -120,6 +119,7 @@ def article_api_list():
         article_list=article_data,
 
     )
+
 
 
 

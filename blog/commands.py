@@ -4,6 +4,7 @@ import click
 
 
 # the there is migrations, the init-db don't need
+
 @click.command('init-db')
 def init_db():
     from wsgi import app

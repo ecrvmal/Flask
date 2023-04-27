@@ -1,6 +1,7 @@
 from flask_combo_jsonapi import ResourceDetail, ResourceList
 
 from blog.api.permissions.user import UserListPermission, UserPatchPermission
+
 from blog.schemas import UserSchema
 from blog.extensions import db
 from blog.models import User
@@ -12,6 +13,7 @@ class UserList(ResourceList):
         "session": db.session,
         "model": User,
         'permission_get': [UserListPermission, ],
+
     }
 
 
@@ -22,3 +24,4 @@ class UserDetail(ResourceDetail):
         "model": User,
         'permission_get': [UserPatchPermission, ],
     }
+

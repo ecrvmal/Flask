@@ -1,6 +1,7 @@
 import requests
 from combojsonapi.event.resource import EventsResource
 from flask import request
+
 from flask_combo_jsonapi import ResourceDetail, ResourceList
 from blog.schemas import ArticleSchema
 from blog.extensions import db
