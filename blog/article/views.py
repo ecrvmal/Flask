@@ -32,6 +32,13 @@ article = Blueprint('article', __name__, url_prefix='/articles', static_folder='
 @article.route('/')
 @login_required
 def article_list():
+    """
+    The article_list function renders the article_list.html template,
+    which displays all articles in the database.
+
+    :return: A rendered template of the articles/list
+    :doc-author: Trelent
+    """
     articles = Article.query.all()
     users = User.query.all()
     return render_template(
@@ -44,6 +51,15 @@ def article_list():
 @article.route('/<int:pk>')
 @login_required
 def article_details(pk: int):
+    """
+    The article_details function will be used to display the details of a single article.
+    It will accept an integer primary key (pk) as its only argument, and it will return a rendered template.
+    The template should be named 'articles/details.html'. The context for this template should contain one variable:
+    article, which is the Article object that corresponds to the pk passed in.
+
+    :param pk: int: Pass in the primary key of an article
+    :return: A rendered template
+    """
     the_article = Article.query.filter_by(id=pk).one_or_none()
     # users = User.query.all()
     if not the_article:
@@ -57,6 +73,13 @@ def article_details(pk: int):
 @article.route('/create', methods=['GET',"POST"])
 @login_required
 def create_article():
+    """
+    The create_article function is responsible for creating a new article.
+    It will first check if the request method is GET or POST. If it's GET, then we'll render the create template with an empty form.
+    If it's POST, then we'll validate the form and save our new article to the database.
+
+    :return: A redirect to the article_details function
+    """
     if request.method == 'GET':
         form = CreateArticleForm(request.form)
         form.tags.choices = [(tag.id, tag.name) for tag in Tag.query.order_by('name')]
@@ -94,6 +117,13 @@ def create_article():
 @article.route('/tag/<int:pk>')
 @login_required
 def article_tag_details(pk: int):
+
+    """
+    The article_tag_details function is a route that takes in an integer primary key (pk) and returns the details of all articles with the tag associated with that pk.
+
+    :param pk: int: Specify the primary key of the tag that we want to display
+    :return: The rendered template for the article_set
+    """
     selected_tag = Tag.query.filter_by(id=pk).one_or_none()
 
     article_set = Article.query.options(joinedload(Article.tags)).filter(Article.tags.any(Tag.id == pk))
@@ -109,6 +139,15 @@ def article_tag_details(pk: int):
 @article.route('/api')
 # @login_required
 def article_api_list():
+
+    """
+    The article_api_list function is a route that renders the article_api.html template, which displays all articles in the database.
+    The function uses requests to get data from an API endpoint and then loads it into a dictionary using json.loads().
+    It then passes this dictionary as an argument to render_template().
+
+    :return: A list of articles from the api
+    :doc-author: Trelent
+    """
     article_set = requests.get(f'{API_URL}/api/articles')
     # article_set = requests.get(f'{API_URL}/api/articles/event_get_list')
     # article_set = requests.get('https://flask-api-deployment-cr01.onrender.com/api/articles')

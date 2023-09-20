@@ -18,6 +18,15 @@ def hello():
 
 @auth.route('/login', methods=('GET', 'POST'))
 def login():
+    """
+    The login function is responsible for rendering the login page and handling
+    the POST request from the login form. It uses Flask-Login's `login_user` function
+    to log in a user, which sets up session variables to track that a user is logged in.
+
+
+    :return: A redirect to the user list page
+    :doc-author: Trelent
+    """
     if request.method == 'GET':
         if current_user.is_authenticated:
             return redirect(url_for('user.user_details', pk=current_user.id))
@@ -49,6 +58,13 @@ def login():
 
 @auth.route('/register', methods=('GET', 'POST'))
 def register():
+    """
+    The register function is responsible for registering a new user.
+    It will validate the form, and if it is valid, create a new User object and add it to the database.
+    If there are any errors in validation or adding to the database, they will be stored in an error list which will be passed into our template.
+
+    :return: A redirect to the user list
+    """
     if current_user.is_authenticated:
         return redirect(url_for('user.get_user', pk=current_user.id))
 
@@ -91,5 +107,12 @@ def register():
 @auth.route('/logout')
 @login_required
 def logout():
+    """
+    The logout function logs the user out of their account.
+        It does this by calling the logout_user() function from Flask-Login, which removes all session data and cookies.
+
+    :return: A redirect to the login page
+    :doc-author: Trelent
+    """
     logout_user()
     return redirect(url_for('.login'))

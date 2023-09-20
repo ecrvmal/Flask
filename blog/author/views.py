@@ -11,6 +11,14 @@ author = Blueprint('author', __name__, url_prefix='/authors',static_folder='../s
 @author.route('/')
 # @login_required
 def author_list():
+
+    """
+    The author_list function renders the authors/list.html template,
+        passing in a list of all Author objects from the database.
+
+    :return: A list of all authors in our database
+    :doc-author: Trelent
+    """
     authors = Author.query.all()
     return render_template(
         'authors/list.html',
