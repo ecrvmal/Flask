@@ -1,6 +1,6 @@
 # FLASK Deployment
-The FLASK Deployment repo is created for implementation of FLASK project \
-(Users-Authors-Articles) in Docker containers.
+The FLASK Deployment repo is created for implementation of FLASK project 
+(Users-Authors-Articles) \
 The project can be implemented either as python application or as a set of containers.
 
 ## Project stack:
